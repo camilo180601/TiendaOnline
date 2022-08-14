@@ -5,7 +5,9 @@ define("CURRENCY", "USD");
 define("KEY_TOKEN", "C@mele-0310");
 define("MONEDA", "$");
 
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 $num_cart=0;
 if(isset($_SESSION['carrito']['productos']))
 {

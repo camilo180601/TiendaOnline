@@ -44,3 +44,20 @@ svg:not(:root) {
     margin: 0;
     padding: 0;
 }
+
+.welcome h1{
+    display: inline-block;
+    font-family: italic;
+    font-weight: bold;
+
+}
+
+.welcome a{
+    float: right;
+    display: inline-block;
+
+}
+.titulo-adm{
+    font-family: italic;
+    font-weight: bold;
+}
