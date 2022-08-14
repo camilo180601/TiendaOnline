@@ -24,6 +24,7 @@ if (isset($_SESSION['usuario-adm'])) :
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Foto</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Precio</th>
@@ -33,9 +34,16 @@ if (isset($_SESSION['usuario-adm'])) :
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($query as $row): ?>
+            <?php foreach ($query as $row): 
+                $imagen = "images/productos/" .$row['id']. "/principal.jpg";
+                if(!file_exists($imagen)){
+                    $imagen = "images/no-photo.jpg";
+                }
+            ?>
                 <tr>
+                    
                     <td><?=$row['id']?></td>
+                    <td><img class="img-thumbnail img-fluid" width="100" src="<?php echo $imagen; ?>" alt="Principal.jpg"></td>
                     <td><?=$row['nombre']?></td>
                     <td><?=$row['descripcion']?></td>
                     <td><?=$row['precio']?></td>

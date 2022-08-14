@@ -22,8 +22,7 @@ if(isset($_POST)){
             $temp = $_FILES['foto']['tmp_name'];
             //Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
             if (!((strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")))) {
-                echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
-        - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.</b></div>';
+                header("Location: administrar.php");
             } else {
                 //Si la imagen es correcta en tamaño y tipo
                 //Se intenta subir al servidor
@@ -32,24 +31,22 @@ if(isset($_POST)){
                     if (move_uploaded_file($temp, 'images/productos/'.$_GET['editar'].'/'. $archivo)) {
                         //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
                         chmod('images/productos/'.$_GET['editar'].'/'. $archivo, 0777);
-                        //Mostramos el mensaje de que se ha subido co éxito
-                        echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
+            
         
                     } else {
                         //Si no se ha podido subir la imagen, mostramos un mensaje de error
-                        echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
+                        header("Location: administrar.php");
                     }
                 }else{
                     mkdir($path, 0777, true);
                     if (move_uploaded_file($temp, 'images/productos/'.$_GET['editar'].'/'. $archivo)) {
                         //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
                         chmod('images/productos/'.$_GET['editar'].'/'. $archivo, 0777);
-                        //Mostramos el mensaje de que se ha subido co éxito
-                        echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
+                    
         
                     } else {
                         //Si no se ha podido subir la imagen, mostramos un mensaje de error
-                        echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
+                        header("Location: administrar.php");
                     }
 
                 }
