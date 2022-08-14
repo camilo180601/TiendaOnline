@@ -3,6 +3,12 @@ require 'config/config.php';
 require 'config/database.php';
 include 'layout/header.php';
 ?>  
+
+    <?php
+        if(isset($_SESSION['usuario-adm'])){
+            header("Location: administrar.php");
+        }
+    ?>
     <div class="container">
 
         <br>
