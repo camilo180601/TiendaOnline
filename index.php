@@ -6,7 +6,7 @@ require 'config/database.php';
 $db = new Database();
 $con = $db->conectar();
 
-$sql = $con->prepare("SELECT id, nombre, precio FROM productos WHERE activo=1 AND cantidad>0");
+$sql = $con->prepare("SELECT id, nombre, precio, descuento FROM productos WHERE activo=1 AND cantidad>0");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 include 'layout/header.php';
@@ -31,8 +31,22 @@ include 'layout/header.php';
                         ?>
                     <img src="<?php echo $imagen; ?>" alt="producto">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $row['nombre']; ?></h5>
-                        <p class="card-text">$ <?php echo number_format($row['precio'], 2, '.', ','); ?></p>
+                        <h5 class="card-title"><b><?php echo $row['nombre']; ?></b></h5>
+                        <?php
+                        if($row['descuento'] == 0){
+                        ?>
+                            <br>
+                            <h4 class="card-text">$ <?php echo number_format($row['precio'], 2, '.', ','); ?></h4>
+                            <br>
+            
+                        <?php
+                        }else{
+                            $precio_desc=$row['precio']-(($row['precio']*$row['descuento'])/100);
+                        ?>    
+                            <p class="card-text"><del>$ <?php echo number_format($row['precio'], 2, '.', ',') ?></del><br><?php echo '<h4> $'.number_format($precio_desc, 2, '.', ',').  '  <span class="text-success"> -' .$row['descuento'].'% </span></h4>'; ?></p>
+                        <?php
+                        }
+                        ?>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
