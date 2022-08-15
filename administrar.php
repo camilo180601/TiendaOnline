@@ -15,7 +15,11 @@ if (isset($_SESSION['usuario-adm'])) :
 
             <div class="welcome">
                 <h1>Bienvenido/a <?= $_SESSION['usuario-adm']['nombre'] ?></h1> 
+
                 <a href="cerrar.php" class="btn btn-danger">Cerrar Sesión</a>
+                <a href="compras.php" class="btn btn-primary">Gestionar Compras</a>
+                
+                
             </div>
 
         </div>
