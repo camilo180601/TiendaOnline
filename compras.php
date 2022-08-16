@@ -7,7 +7,6 @@ require_once 'layout/header.php';
 if (isset($_SESSION['usuario-adm'])) :
     $consulta="SELECT * FROM compra";
     $query = mysqli_query($db, $consulta);
-    
 ?>
     <br>
     <div class="container">
