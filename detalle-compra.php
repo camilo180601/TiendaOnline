@@ -8,7 +8,6 @@ if (isset($_SESSION['usuario-adm'])) :
     $id_compra = $_GET['id'];
     $consulta = "SELECT * FROM detalle_compra WHERE id_compra = $id_compra";
     $query = mysqli_query($db, $consulta);
-    $array = mysqli_fetch_array($query);
 ?>
     <br>
     <div class="container">
