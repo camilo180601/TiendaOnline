@@ -15,6 +15,7 @@ if($productos != null){
         $lista_carrito[] = $sql->fetch(PDO::FETCH_ASSOC);
 
     }
+    
 }
 
 
