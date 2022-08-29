@@ -17,6 +17,7 @@ if($productos != null){
     }
 }
 
+
 include 'layout/header.php';
 ?>
 
